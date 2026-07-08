@@ -36,13 +36,13 @@ The `__pycache__` folders and compiled `.pyc` files are not required for GitHub 
 
 `datagen_phase.ipynb` generates simulated phase object measurements. Each grayscale object is mapped to a phase delay between 0 and pi, and the object transmittance is represented as a unit modulus complex field. Measurements are generated at multiple detector distances, typically 2 mm and 4 mm.
 
-`recon_amp.ipynb` performs amplitude reconstruction from simulated measurements. It reconstructs each object using both the partially coherent GVS model and the coherent model. The final cropped reconstructions are saved as `amp_GVS.png` and `amp_COH.png`.
+`recon_amp.ipynb` performs amplitude reconstruction from simulated measurements. It reconstructs each object using both the partially coherent GVS model and the coherent model. The final reconstructions are saved as `amp_GVS.png` and `amp_COH.png`.
 
-`recon_phase.ipynb` performs phase-only reconstruction from two detector plane measurements. It reconstructs the phase using both the partially coherent GVS model and the coherent model. The final cropped phase reconstructions are saved as `phase_GVS.png` and `phase_COH.png`.
+`recon_phase.ipynb` performs phase-only reconstruction from two detector plane measurements. It reconstructs the phase using both the partially coherent GVS model and the coherent model. The final phase reconstructions are saved as `phase_GVS.png` and `phase_COH.png`.
 
 `gvs_propagator/coherent.py` contains routines for coherent propagation, including angular spectrum, Fresnel, and shifted Fresnel propagation, as well as intensity computation for specified wavefronts.
 
-`gvs_propagator/partially_coherent.py` contains partially coherent propagation routines, including complex coherence factor computation, Schell propagation, angular spectrum GVS propagation, Fresnel GVS propagation, and direct mutual intensity based propagation functions.
+`gvs_propagator/partially_coherent.py` contains partially coherent propagation routines, including complex coherence factor computation, Schell propagation, angular spectrum GVS propagation, Fresnel GVS propagation, and direct mutual intensity-based propagation functions.
 
 `gvs_propagator/masks.py` contains utilities for generating source and aperture masks, including circular sources, pinholes, slits, and multi-slit masks.
 
@@ -95,11 +95,11 @@ glyph_object_library/
 └── object_library_metadata.csv
 ```
 
-The Python notebooks expect object images to be addressable through `objects_root/class/object_id.png`. If the MATLAB generated filenames are used directly, either rename the generated images or update the filename pattern in the notebooks.
+The Python notebooks expect object images to be addressable through `objects_root/class/object_id.png`. If the MATLAB-generated filenames are used directly, either rename the generated images or update the filename pattern in the notebooks.
 
 ### 2. Generate amplitude measurements
 
-Open `datagen_amp.ipynb` and fill in the parameter placeholders. The required fields include image size, wavelength, source to object distance, source radii, camera pixel size, padding factor, propagation distance, object root, object classes, object IDs, output directory, and coherence folder names.
+Open `datagen_amp.ipynb` and fill in the parameter placeholders. The required fields include image size, wavelength, source-to-object distance, source radii, camera pixel size, padding factor, propagation distance, object root, object classes, object IDs, output directory, and coherence folder names.
 
 The notebook saves measurements using the layout
 
@@ -164,7 +164,7 @@ phase_reconstruction_output/
 
 The partially coherent measurement model uses a spatial coherence function obtained from the Fourier transform of the source intensity distribution. For each source radius, a circular source mask is generated, its complex coherence factor is computed, and Schell propagation is applied to the coherent detector intensity. This gives a partially coherent detector intensity for the specified illumination coherence state.
 
-The coherent comparison model uses the same object and propagation geometry but omits the spatial coherence filtering step. This allows direct comparison between reconstructions obtained with a coherence aware forward model and reconstructions obtained under a fully coherent assumption.
+The coherent comparison model uses the same object and propagation geometry but omits the spatial coherence filtering step. This allows direct comparison between reconstructions obtained with a coherence-aware forward model and reconstructions obtained under a fully coherent assumption.
 
 ## Main parameters to set
 
@@ -196,7 +196,7 @@ The reconstruction notebooks are configured to save only the reconstructed objec
 
 ## Suggested GitHub cleanup
 
-Before committing the repository, remove generated and machine specific files such as
+Before committing the repository, remove generated and machine-specific files such as
 
 ```text
 __pycache__/
@@ -215,7 +215,7 @@ Generated object libraries, simulated measurements, and reconstruction outputs c
 If this code is used, please cite the associated manuscript
 
 ```text
-Role of Spatial Coherence in Single Shot Lensless Image Reconstruction
+Role of Spatial Coherence in Single-Shot Lensless Image Reconstruction
 ```
 
 ## License
