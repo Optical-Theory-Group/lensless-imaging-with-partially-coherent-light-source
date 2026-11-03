@@ -2,7 +2,9 @@
 
 This repository contains code for generating synthetic object libraries, simulating lensless measurements under partial spatial coherence, and reconstructing amplitude and phase objects using partially coherent and coherent forward models.
 
-The code supports the workflow used in the manuscript **Role of Spatial Coherence in Single Shot Lensless Image Reconstruction**. The main computational components are a generalised Van Cittert Zernike and Schell model for partially coherent propagation, a coherent angular spectrum model, and PyTorch-based inverse reconstruction routines.
+The code supports the workflow used in the manuscript **Role of Spatial Coherence in Single Shot Lensless Image Reconstruction**. The main computational components are the Generalized Van Cittert-Zernike Schell (GVS) propagator for partially coherent light, developed by Montoya et al. [[1]](#citation), a coherent angular spectrum model, and PyTorch-based inverse reconstruction routines.
+
+The data generation notebooks use the authors' implementation of the GVS propagator, [`gvs_propagator`](https://github.com/mmonto952/gvs-propagator). It is not part of this repository and must be installed separately (see [Installation](#installation)).
 
 ## Repository structure
 
@@ -12,21 +14,8 @@ The code supports the workflow used in the manuscript **Role of Spatial Coherenc
 ├── datagen_amp.ipynb
 ├── datagen_phase.ipynb
 ├── recon_amp.ipynb
-├── recon_phase.ipynb
-└── gvs_propagator
-    ├── __init__.py
-    ├── coherent.py
-    ├── constants.py
-    ├── masks.py
-    ├── partially_coherent.py
-    ├── utils.py
-    └── notebooks
-        ├── utils.py
-        └── img
-            └── usaf.png
+└── recon_phase.ipynb
 ```
-
-The `__pycache__` folders and compiled `.pyc` files are not required for GitHub and should be excluded from version control.
 
 ## File descriptions
 
@@ -40,21 +29,11 @@ The `__pycache__` folders and compiled `.pyc` files are not required for GitHub 
 
 `recon_phase.ipynb` performs phase-only reconstruction from two detector plane measurements. It reconstructs the phase using both the partially coherent GVS model and the coherent model. The final phase reconstructions are saved as `phase_GVS.png` and `phase_COH.png`.
 
-`gvs_propagator/coherent.py` contains routines for coherent propagation, including angular spectrum, Fresnel, and shifted Fresnel propagation, as well as intensity computation for specified wavefronts.
-
-`gvs_propagator/partially_coherent.py` contains partially coherent propagation routines, including complex coherence factor computation, Schell propagation, angular spectrum GVS propagation, Fresnel GVS propagation, and direct mutual intensity-based propagation functions.
-
-`gvs_propagator/masks.py` contains utilities for generating source and aperture masks, including circular sources, pinholes, slits, and multi-slit masks.
-
-`gvs_propagator/utils.py` contains general utilities for normalisation, centre cropping, grid generation, radial grid generation, image zooming, and spherical wavefront multiplication.
-
-`gvs_propagator/constants.py` defines basic metric unit conversions.
-
-`gvs_propagator/notebooks/utils.py` contains optional notebook display utilities. It is not required for the reconstruction pipeline.
+`datagen_amp.ipynb` and `datagen_phase.ipynb` take their partially coherent forward model (complex coherence factor, Schell propagation and angular spectrum GVS propagation) from the external `gvs_propagator` package [[1]](#citation). The reconstruction notebooks contain their own PyTorch implementation of the coherent and GVS forward models and do not import `gvs_propagator`.
 
 ## Installation
 
-Create a Python environment and install the required packages.
+Create a Python environment (Python 3.11 to 3.14) and install the required packages.
 
 ```bash
 pip install numpy scipy imageio matplotlib plotly dask opencv-python jupyter
@@ -62,11 +41,19 @@ pip install numpy scipy imageio matplotlib plotly dask opencv-python jupyter
 
 Install PyTorch using the build appropriate for the available CPU or CUDA environment.
 
+Install the GVS propagator [[1]](#citation) from its authors' repository, pinned to the commit this code was developed against.
+
+```bash
+pip install --no-deps "git+https://github.com/mmonto952/gvs-propagator@f505a41b5e86f5393e9d12429a9b2f05464b39c1"
+```
+
+`--no-deps` skips the package's own dependency list, which adds packages this workflow does not use and constrains the PyTorch version. The packages installed above cover everything the notebooks need from it.
+
 The MATLAB object generation file requires MATLAB. The Image Processing Toolbox is needed for image resizing, rotation, filtering, and thresholding. The built in digit data option also requires the MATLAB digit dataset function used by the code. If that dataset is unavailable, provide a custom glyph folder through the configuration.
 
 ## Running the workflow
 
-Run all Python notebooks from the repository root so that imports from `gvs_propagator` resolve correctly.
+The data generation notebooks import `gvs_propagator`, so install it first (see [Installation](#installation)).
 
 ### 1. Generate synthetic objects
 
@@ -162,7 +149,7 @@ phase_reconstruction_output/
 
 ## Physical model summary
 
-The partially coherent measurement model uses a spatial coherence function obtained from the Fourier transform of the source intensity distribution. For each source radius, a circular source mask is generated, its complex coherence factor is computed, and Schell propagation is applied to the coherent detector intensity. This gives a partially coherent detector intensity for the specified illumination coherence state.
+The partially coherent measurement model is the GVS propagator [[1]](#citation). It uses a spatial coherence function obtained from the Fourier transform of the source intensity distribution. For each source radius, a circular source mask is generated, its complex coherence factor is computed, and Schell propagation is applied to the coherent detector intensity. This gives a partially coherent detector intensity for the specified illumination coherence state.
 
 The coherent comparison model uses the same object and propagation geometry but omits the spatial coherence filtering step. This allows direct comparison between reconstructions obtained with a coherence-aware forward model and reconstructions obtained under a fully coherent assumption.
 
@@ -216,6 +203,23 @@ If this code is used, please cite the associated manuscript
 
 ```text
 Role of Spatial Coherence in Single-Shot Lensless Image Reconstruction
+```
+
+The partially coherent forward model is the Generalized Van Cittert-Zernike Schell (GVS) propagator. Please also cite
+
+[1] Manuel Montoya, Maria J. Lopera, Yunfeng Nie, and David Blinder, "Generalized Van Cittert-Zernike Schell propagator: an efficient algorithm for simulating partially coherent light," Opt. Express 33, 46313-46325 (2025). https://doi.org/10.1364/OE.571673
+
+```bibtex
+@article{Montoya2025GeneralizedLight,
+  author  = {Montoya, Manuel and Lopera, Maria J. and Nie, Yunfeng and Blinder, David},
+  title   = {{Generalized Van Cittert-Zernike Schell propagator: an efficient algorithm for simulating partially coherent light}},
+  journal = {Optics Express},
+  volume  = {33},
+  number  = {22},
+  pages   = {46313--46325},
+  year    = {2025},
+  doi     = {10.1364/OE.571673}
+}
 ```
 
 ## License
