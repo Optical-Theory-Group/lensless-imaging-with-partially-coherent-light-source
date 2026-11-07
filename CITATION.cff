@@ -1,0 +1,62 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the associated paper."
+type: software
+title: "Role of Spatial Coherence in Single-Shot Lensless Image Reconstruction: simulation and reconstruction code"
+abstract: >-
+  Simulation and reconstruction code for single-shot lensless imaging with
+  partially coherent light, using a generalised van Cittert-Zernike and Schell
+  propagation model.
+authors:
+  - given-names: Ganesh M.
+    family-names: Balasubramaniam
+    orcid: "https://orcid.org/0000-0001-7824-5831"
+  - given-names: Xiao-Liu
+    family-names: Chu
+    orcid: "https://orcid.org/0000-0002-7476-2097"
+  - given-names: Matthew R.
+    family-names: Foreman
+    orcid: "https://orcid.org/0000-0001-5864-9636"
+repository-code: "https://github.com/Optical-Theory-Group/lensless-imaging-with-partially-coherent-light-source"
+license: GPL-3.0-only
+keywords:
+  - computational imaging
+  - inverse problems
+  - lensless imaging
+  - phase retrieval
+  - spatial coherence
+preferred-citation:
+  type: article
+  title: "Role of Spatial Coherence in Single-Shot Lensless Image Reconstruction"
+  authors:
+    - given-names: Ganesh M.
+      family-names: Balasubramaniam
+      orcid: "https://orcid.org/0000-0001-7824-5831"
+    - given-names: Xiao-Liu
+      family-names: Chu
+      orcid: "https://orcid.org/0000-0002-7476-2097"
+    - given-names: Matthew R.
+      family-names: Foreman
+      orcid: "https://orcid.org/0000-0001-5864-9636"
+  journal: "Optics Letters"
+  year: 2026
+  doi: "10.1364/OL.611778"
+  url: "https://doi.org/10.1364/OL.611778"
+references:
+  - type: article
+    title: "Generalized Van Cittert-Zernike Schell propagator: an efficient algorithm for simulating partially coherent light"
+    authors:
+      - given-names: Manuel
+        family-names: Montoya
+      - given-names: Maria J.
+        family-names: Lopera
+      - given-names: Yunfeng
+        family-names: Nie
+      - given-names: David
+        family-names: Blinder
+    journal: "Optics Express"
+    volume: 33
+    issue: "22"
+    start: 46313
+    end: 46325
+    year: 2025
+    doi: "10.1364/OE.571673"
