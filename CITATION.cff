@@ -17,6 +17,14 @@ authors:
     family-names: Foreman
     orcid: "https://orcid.org/0000-0001-5864-9636"
 repository-code: "https://github.com/Optical-Theory-Group/lensless-imaging-with-partially-coherent-light-source"
+doi: "10.5281/zenodo.24030562"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.24030562"
+    description: "Zenodo archive of all versions (concept DOI)"
+  - type: doi
+    value: "10.5281/zenodo.24030563"
+    description: "Zenodo archive of version v1.0.0"
 license: GPL-3.0-only
 keywords:
   - computational imaging

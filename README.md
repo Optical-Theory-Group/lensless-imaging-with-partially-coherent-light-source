@@ -1,5 +1,7 @@
 # Role of Spatial Coherence in Single-Shot Lensless Image Reconstruction
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24030562.svg)](https://doi.org/10.5281/zenodo.24030562)
+
 This repository contains code for generating synthetic object libraries, simulating lensless measurements under partial spatial coherence, and reconstructing amplitude and phase objects using partially coherent and coherent forward models.
 
 The code supports the workflow used in the paper **Role of Spatial Coherence in Single-Shot Lensless Image Reconstruction**, *Optics Letters* (2026), [doi:10.1364/OL.611778](https://doi.org/10.1364/OL.611778). The main computational components are the Generalized Van Cittert-Zernike Schell (GVS) propagator for partially coherent light, developed by Montoya et al. [[1]](#citation), a coherent angular spectrum model, and PyTorch-based inverse reconstruction routines.
@@ -212,6 +214,8 @@ Ganesh M. Balasubramaniam, Xiao-Liu Chu, and Matthew R. Foreman, "Role of Spatia
   doi     = {10.1364/OL.611778}
 }
 ```
+
+The code itself is archived on Zenodo. To cite it directly, use https://doi.org/10.5281/zenodo.24030562, which always resolves to the latest version. Version 1.0.0 is https://doi.org/10.5281/zenodo.24030563.
 
 The partially coherent forward model is the Generalized Van Cittert-Zernike Schell (GVS) propagator. Please also cite
 
