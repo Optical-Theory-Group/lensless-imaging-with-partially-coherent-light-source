@@ -2,7 +2,7 @@
 
 This repository contains code for generating synthetic object libraries, simulating lensless measurements under partial spatial coherence, and reconstructing amplitude and phase objects using partially coherent and coherent forward models.
 
-The code supports the workflow used in the manuscript **Role of Spatial Coherence in Single Shot Lensless Image Reconstruction**. The main computational components are the Generalized Van Cittert-Zernike Schell (GVS) propagator for partially coherent light, developed by Montoya et al. [[1]](#citation), a coherent angular spectrum model, and PyTorch-based inverse reconstruction routines.
+The code supports the workflow used in the paper **Role of Spatial Coherence in Single-Shot Lensless Image Reconstruction**, *Optics Letters* (2026), [doi:10.1364/OL.611778](https://doi.org/10.1364/OL.611778). The main computational components are the Generalized Van Cittert-Zernike Schell (GVS) propagator for partially coherent light, developed by Montoya et al. [[1]](#citation), a coherent angular spectrum model, and PyTorch-based inverse reconstruction routines.
 
 The data generation notebooks use the authors' implementation of the GVS propagator, [`gvs_propagator`](https://github.com/mmonto952/gvs-propagator). It is not part of this repository and must be installed separately (see [Installation](#installation)).
 
@@ -199,10 +199,18 @@ Generated object libraries, simulated measurements, and reconstruction outputs c
 
 ## Citation
 
-If this code is used, please cite the associated manuscript
+If this code is used, please cite the associated paper
 
-```text
-Role of Spatial Coherence in Single-Shot Lensless Image Reconstruction
+Ganesh M. Balasubramaniam, Xiao-Liu Chu, and Matthew R. Foreman, "Role of Spatial Coherence in Single-Shot Lensless Image Reconstruction," Opt. Lett. (2026). https://doi.org/10.1364/OL.611778
+
+```bibtex
+@article{Balasubramaniam2026SpatialCoherence,
+  author  = {Balasubramaniam, Ganesh M. and Chu, Xiao-Liu and Foreman, Matthew R.},
+  title   = {{Role of Spatial Coherence in Single-Shot Lensless Image Reconstruction}},
+  journal = {Optics Letters},
+  year    = {2026},
+  doi     = {10.1364/OL.611778}
+}
 ```
 
 The partially coherent forward model is the Generalized Van Cittert-Zernike Schell (GVS) propagator. Please also cite
@@ -224,4 +232,4 @@ The partially coherent forward model is the Generalized Van Cittert-Zernike Sche
 
 ## License
 
-Add the intended license before public release.
+This code is licensed under the GNU General Public License v3.0. See [LICENSE](LICENSE).
